@@ -2,28 +2,42 @@ package baseball.view
 
 import baseball.utils.checkNumberRange
 import baseball.utils.checkNumbersLength
+import baseball.utils.checkRepetition
 import baseball.utils.inputTypeException
 import camp.nextstep.edu.missionutils.Console
 
 class InputView {
     fun readNumbers(): List<Int> {
-        val input = Console.readLine()
-        with(input) {
-            inputTypeException()
-            checkNumbersLength(NUMBERS_LENGTH)
-            checkNumberRange(LOWER_NUMBER,UPPER_NUMBER)
-            return map { it.toString().toInt() }.toList()
+        while (true) {
+            try {
+                val input = Console.readLine()
+                with(input) {
+                    inputTypeException()
+                    checkNumbersLength(NUMBERS_LENGTH)
+                    checkNumberRange(LOWER_NUMBER, UPPER_NUMBER)
+                    checkRepetition()
+                    return map { it.toString().toInt() }.toList()
+                }
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
         }
     }
 
     fun readRetry(): Int {
-        val input = Console.readLine()
-        with(input) {
-            inputTypeException()
-            checkNumbersLength(RETRY_END_LENGTH)
-            checkNumberRange(RETRY, END)
+        while (true) {
+            try {
+                val input = Console.readLine()
+                with(input) {
+                    inputTypeException()
+                    checkNumbersLength(RETRY_END_LENGTH)
+                    checkNumberRange(RETRY, END)
+                }
+                return input.toInt()
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
         }
-        return input.toInt()
     }
 
     companion object {
