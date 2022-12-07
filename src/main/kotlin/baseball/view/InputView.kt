@@ -12,10 +12,7 @@ class InputView {
             try {
                 val input = Console.readLine()
                 with(input) {
-                    inputTypeException()
-                    checkNumbersLength(NUMBERS_LENGTH)
-                    checkNumberRange(LOWER_NUMBER, UPPER_NUMBER)
-                    checkRepetition()
+                    numberInputException()
                     return map { it.toString().toInt() }.toList()
                 }
             } catch (e: IllegalArgumentException) {
@@ -29,15 +26,26 @@ class InputView {
             try {
                 val input = Console.readLine()
                 with(input) {
-                    inputTypeException()
-                    checkNumbersLength(RETRY_END_LENGTH)
-                    checkNumberRange(RETRY, END)
+                    retryInputException()
                 }
                 return input.toInt()
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
+    }
+
+    private fun String.numberInputException() {
+        inputTypeException()
+        checkNumbersLength(NUMBERS_LENGTH)
+        checkNumberRange(LOWER_NUMBER, UPPER_NUMBER)
+        checkRepetition()
+    }
+
+    private fun String.retryInputException() {
+        inputTypeException()
+        checkNumbersLength(RETRY_END_LENGTH)
+        checkNumberRange(RETRY, END)
     }
 
     companion object {
