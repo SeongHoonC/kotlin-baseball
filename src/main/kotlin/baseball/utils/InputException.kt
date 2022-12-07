@@ -15,19 +15,16 @@ fun String.inputTypeException() {
 
 //길이 체크
 fun String.checkNumbersLength(size: Int) {
-    if (this.length != size)
-        throw IllegalArgumentException(ERROR_NOT_LENGTH)
+    require(this.length == size){ ERROR_NOT_LENGTH}
 }
 
 //1~9 숫자인지 체크
 fun String.checkNumberRange(start: Int, end: Int) {
     for (index in this.indices) {
-        if (this[index] - '0' !in start..end)
-            throw IllegalArgumentException(ERROR_NUMBERS_RANGE)
+        require(this[index] - '0' !in start..end){ERROR_NUMBERS_RANGE}
     }
 }
 
 fun String.checkRepetition() {
-    if (this.length != this.toSet().size)
-        throw IllegalArgumentException(ERROR_REPEAT)
+    require(this.length != this.toSet().size){ERROR_REPEAT}
 }
