@@ -17,10 +17,10 @@ class BaseballGame {
 
     fun runGame() {
         var gameGo = true
-        while(gameGo) {
+        while (gameGo) {
             outputView.printMessage(GAME_START)
             playGame()
-            outputView.printMessage (CORRECT_ANSWER)
+            outputView.printMessage(CORRECT_ANSWER)
             gameGo = retry()
         }
     }
@@ -31,13 +31,13 @@ class BaseballGame {
         while (gameResult["Strike"] != 3) {
             outputView.printMessage(PLEASE_INPUT)
             val userNumbers = InputView().readNumbers()
-            val player = Player(userNumbers,computerNumbers)
+            val player = Player(userNumbers, computerNumbers)
             gameResult = player.guess()
             gameResult["Strike"]?.let { gameResult["Ball"]?.let { it1 -> outputView.printBallStrike(it, it1) } }
         }
     }
 
-    private fun retry():Boolean {
+    private fun retry(): Boolean {
         outputView.printMessage(RETRY_OR_END)
         val isRetry = inputView.readRetry()
         if (isRetry == RETRY_GAME)

@@ -7,10 +7,11 @@ import org.junit.jupiter.api.Test
 
 class BaseballMakerTest {
     private val baseballMaker = BaseballMaker(RandomNumberGenerator())
+
     @Test
-    fun `난수 세 개 생성 테스트`(){
+    fun `난수 세 개 생성 테스트`() {
         val result = baseballMaker.makeBaseball()
         for (index in result.indices)
-            Assertions.assertThat(result[index]).isBetween(1,9)
+            Assertions.assertThat(result[index]).isBetween(1, 9)
     }
 }
